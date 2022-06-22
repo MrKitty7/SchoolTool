@@ -210,6 +210,20 @@ def resources():
             os.startfile(url)
         else:
             subprocess.Popen(['xdg-open', url])
+            
+    if selection == 3:
+        url = 'https://e-sfera.hr'
+        if sys.platform == 'win32':
+            os.startfile(url)
+        else:
+            subprocess.Popen(['xdg-open', url])
+            
+    if selection == 4:
+        url = 'https://office.com'
+        if sys.platform == 'win32':
+            os.startfile(url)
+        else:
+            subprocess.Popen(['xdg-open', url])
     
 if selection == 1:
     homework()
