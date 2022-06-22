@@ -74,8 +74,15 @@ def remove_subject():
     sel_subject = input('Specify the subject you want to remove. ')
     path = f'subjects/{sel_subject}'
     os.removedirs(path)
-    
-    
+
+def list_all_homework():
+    print('-----------')
+    with open('subjects.txt', 'r') as f:
+        for subject in f.read().splitlines():
+            path = f'subjects/{subject.lower()}'
+            for homework in os.listdir(path):
+                print(f'{subject}: {homework}')
+    print('-----------')
     
 def homework():
     print('-----------')
@@ -87,6 +94,7 @@ def homework():
     print('3. Remove homework')
     print('4. Add a Subject')
     print('5. Remove a Subject')
+    print('6. List all Homework')
     selection = int(input())
     if selection == 1:
         add_homework()
@@ -102,6 +110,9 @@ def homework():
     
     if selection == 5:
         remove_subject()
+    
+    if selection == 6:
+        list_all_homework()
 
 def exams():
     print('-----------')
@@ -109,7 +120,10 @@ def exams():
     print('-----------')
     print('1. Add Exams')
     print('2. View Exams')
+    print('3. Remove Exams')
+    print('4. List all Exams')
     selection = int(input('Specify one of the options. '))
+    print('-----------')
     def add_exams():
         with open('subjects.txt', 'r') as f:
             for subject in f.read().splitlines():
@@ -140,12 +154,33 @@ def exams():
             for line in f.read().splitlines():
                 print(line)
             print('-----------')
+    def remove_exams():
+        sel_subject = input('Specify which subject you want to remove exams for. ')
+        path = f'exams/{sel_subject.lower()}'
+        for exam in os.listdir(path):
+            print(exam)
+        sel_exam = input('Specify which exam you would like me to remove. ')
+        path = f'{path}/{sel_exam.lower()}'
+        os.remove(path)
         
+    def list_all_exams():
+        with open('subjects.txt', 'r') as f:
+            for subject in f.read().splitlines():
+                path = f'exams/{subject.lower()}'
+                for exam in os.listdir(path):
+                    print(f'{subject}: {exam}')
+        print('-----------')
     if selection == 1:
         add_exams()
     
     if selection == 2:
         view_exams()
+    
+    if selection == 3:
+        remove_exams()
+    
+    if selection == 4:
+        list_all_exams()
 
 if selection == 1:
     homework()
