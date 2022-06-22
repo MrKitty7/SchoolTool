@@ -203,6 +203,13 @@ def resources():
             os.startfile(url)
         else:
             subprocess.Popen(['xdg-open', url])
+            
+    if selection == 2:
+        url = 'https://hr.izzi.digital'
+        if sys.platform == 'win32':
+            os.startfile(url)
+        else:
+            subprocess.Popen(['xdg-open', url])
     
 if selection == 1:
     homework()
