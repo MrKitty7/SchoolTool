@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 from datetime import date, datetime
+
 print('-----------')
 print('Welcome to the SchoolTool!')
 print('-----------')
@@ -11,24 +12,25 @@ print('2. Exams')
 print('3. Resources')
 selection = int(input())
 
-def folder_check():
-    if os.path.isdir('exams') == False:
-            os.makedirs('exams')
-            print("LOG: Created folder 'exams'.")
+if os.path.isdir('exams') == False:
+        os.makedirs('exams')
+        print("LOG: Created folder 'exams'.")
             
-    if os.path.isdir('subjects') == False:
-            os.makedirs('subjects')
-            print("LOG: Created folder 'subjects'.")
+if os.path.isdir('subjects') == False:
+        os.makedirs('subjects')
+        print("LOG: Created folder 'subjects'.")
             
-    if os.path.isdir('resources') == False:
-            os.makedirs('resources')
-            print("LOG: Created folder 'resources'.")
+if os.path.isdir('resources') == False:
+        os.makedirs('resources')
+        print("LOG: Created folder 'resources'.")
+            
 
 
 def add_homework():
     with open('subjects.txt', 'r') as f:
         for subject in f.read().splitlines():
             path = 'subjects/' + subject.lower()
+            os.makedirs(path)
         sel_subject = input('Specify which subject you would like me to add homework to. ')
         title = input('Specify the title of the homework. ')
         content = input('Specify the contents of the homework. ')
