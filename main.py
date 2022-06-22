@@ -87,6 +87,8 @@ def list_all_homework():
     print('-----------')
     
 def homework():
+    if os.path.isdir('subjects') == False:
+            os.makedirs('subjects')
     print('-----------')
     print('Welcome to the Homework function of the SchoolTool!')
     print('-----------')
@@ -127,6 +129,8 @@ def exams():
     selection = int(input('Specify one of the options. '))
     print('-----------')
     def add_exams():
+        if os.path.isdir('exams') == False:
+            os.makedirs('exams')
         with open('subjects.txt', 'r') as f:
             for subject in f.read().splitlines():
                 path = 'exams/' + subject.lower()
@@ -190,40 +194,41 @@ def resources():
     print('Welcome to the Resources function of the SchoolTool! ')
     print('-----------')
     
-    print('1. E-Dnevnik Ocjene ')
-    print('2. Izzi Digital')
-    print('3. E-sfera')
-    print('4. Microsoft Office 365')
+    print('1. Add a new resource. ')
+    print('2. Open resources. ')
     
     selection = int(input('Select one of the resources provided. '))
     
+    def add_resources():
+        if os.path.isdir('resources') == False:
+            os.makedirs('resources')
+            
+        resource_name = input('Specify the name of the resource you want to add. ')
+        resource_url = input('Specify the url to the resource. ')
+        path = f'resources/{resource_name}'
+        
+        with open(path, 'w') as f:
+            f.write(resource_url)
+
+    def open_resources():
+        print('-----------')
+        path = 'resources'
+        for line in os.listdir(path):
+            print(line)
+        print('-----------')
+        sel_resource = input('Specify which resource you want to open. ')
+        path = f'resources/{sel_resource}'
+        with open(path, 'r') as f:
+            url = f.read()
+            
+        os.startfile(url)
+    
+    
     if selection == 1:
-        url = 'https://ocjene.skole.hr'
-        if sys.platform == 'win32':
-            os.startfile(url)
-        else:
-            subprocess.Popen(['xdg-open', url])
-            
+        add_resources()
+    
     if selection == 2:
-        url = 'https://hr.izzi.digital'
-        if sys.platform == 'win32':
-            os.startfile(url)
-        else:
-            subprocess.Popen(['xdg-open', url])
-            
-    if selection == 3:
-        url = 'https://e-sfera.hr'
-        if sys.platform == 'win32':
-            os.startfile(url)
-        else:
-            subprocess.Popen(['xdg-open', url])
-            
-    if selection == 4:
-        url = 'https://office.com'
-        if sys.platform == 'win32':
-            os.startfile(url)
-        else:
-            subprocess.Popen(['xdg-open', url])
+        open_resources()
     
 if selection == 1:
     homework()
