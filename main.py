@@ -30,6 +30,7 @@ def add_homework():
     with open('subjects.txt', 'r') as f:
         for subject in f.read().splitlines():
             path = 'subjects/' + subject.lower()
+            # Creates folders for each subject
             os.makedirs(path)
         sel_subject = input('Specify which subject you would like me to add homework to. ')
         title = input('Specify the title of the homework. ')
