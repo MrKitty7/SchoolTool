@@ -1,5 +1,6 @@
 import os
-from sys import exit
+import sys
+import subprocess
 from datetime import date, datetime
 print('-----------')
 print('Welcome to the SchoolTool!')
@@ -7,6 +8,7 @@ print('-----------')
 print('Select one of the options stated: ')
 print('1. Homework')
 print('2. Exams')
+print('3. Resources')
 selection = int(input())
 
 def add_homework():
@@ -181,9 +183,32 @@ def exams():
     
     if selection == 4:
         list_all_exams()
-
+        
+        
+def resources():
+    print('-----------')
+    print('Welcome to the Resources function of the SchoolTool! ')
+    print('-----------')
+    
+    print('1. E-Dnevnik Ocjene ')
+    print('2. Izzi Digital')
+    print('3. E-sfera')
+    print('4. Microsoft Office 365')
+    
+    selection = int(input('Select one of the resources provided. '))
+    
+    if selection == 1:
+        url = 'https://ocjene.skole.hr'
+        if sys.platform == 'win32':
+            os.startfile(url)
+        else:
+            subprocess.Popen(['xdg-open', url])
+    
 if selection == 1:
     homework()
     
 if selection == 2:
     exams()
+    
+if selection == 3:
+    resources()
