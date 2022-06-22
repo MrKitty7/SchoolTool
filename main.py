@@ -39,7 +39,7 @@ def add_homework():
         with open(path, 'w') as f:
             f.write(content)
         
-        print('LOG: Done adding homework.')
+        print('LOG: Done adding homework. ')
         
 def view_homework():
     print('-----------')
